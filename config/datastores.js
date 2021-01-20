@@ -52,8 +52,7 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
 
     adapter: 'sails-mongo',
-    host: 'localhost',
-    database: 'shoppersDB'
+    url: 'mongodb://Ridumatics:Ril-wayne1@shoppers-shard-00-00.06n9j.mongodb.net:27017,shoppers-shard-00-01.06n9j.mongodb.net:27017,shoppers-shard-00-02.06n9j.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-b6is9y-shard-0&authSource=admin&retryWrites=true&w=majority'
 
   },
 
