@@ -1,0 +1,19 @@
+function modelValidation(req, res, next) {
+  // get the req.options.validation property and try to load a file
+  // from the api/validaton directory with the property name
+  var schema = require('../validation/' + req.options.validation);
+  if (!schema) {
+    return res.serverErrorJson(new Error('Missing validation schema for ' + req.options.controller + ' ' + req.options.action));
+  }
+
+  // Here body can also be used with params, query etc.
+  Joi.validate(req.body, schema.body, (err, value) => {
+    if (err !== null) {
+      error = err.details[0];
+      error.statusCode = 400;
+      return res.badRequest({ error: error }, req.options.action);
+    } else {
+      return next();
+    }
+  });
+}
