@@ -131,10 +131,11 @@ module.exports = {
         price,
         discount,
         countInStock,
+        productFor
       } = req.body;
 
       const updatedProduct = await Product.updateOne({ id }).set({
-        name, brand, category, description, price, discount, countInStock
+        name, brand, category, description, price, discount, countInStock, productFor
       });
 
       if(updatedProduct) {

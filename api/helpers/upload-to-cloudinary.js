@@ -25,12 +25,16 @@ module.exports = {
   fn: function ({ productImage }) {
     const _productImage = productImage[0].fd;
     return new Promise((resolve, reject) => {
-      cloudinary.uploader.upload(_productImage, { folder: 'shoppers'}, (err, result) => {
+      cloudinary.uploader.upload(_productImage, {
+        folder: 'shoppers',
+        eager: [
+          { width: 500, quality: 'auto', crop: 'scale'} ]
+      }, (err, result) => {
         if(err) {
           reject(err);
         }
         if(result ) {
-          resolve(result.secure_url);
+          resolve(result.eager[0].secure_url);
         }
       });
     });
