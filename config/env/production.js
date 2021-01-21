@@ -252,6 +252,7 @@ module.exports = {
     ***************************************************************************/
     onlyAllowOrigins: [
       'http://localhost:8080',
+      'https://shoppers-ui.netlify.app',
     ],
 
 
