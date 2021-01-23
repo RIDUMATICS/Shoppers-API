@@ -6,23 +6,20 @@
  */
 
 module.exports = {
-
   attributes: {
     orderId: {
-      model: 'order'
+      model: 'order',
     },
     qty: {
       type: 'number',
-      required: true
+      required: true,
     },
     price: {
       type: 'string',
-      required: true
+      required: true,
     },
     product: {
-      model: 'product'
-    }
+      model: 'product',
+    },
   },
-
 };
-

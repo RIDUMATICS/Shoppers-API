@@ -6,43 +6,35 @@ dotenv.config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
-
-
   friendlyName: 'Send mail',
 
-
   description: 'send user mail with sendGrid',
-
 
   inputs: {
     to: {
       type: 'ref',
       friendlyName: 'User email',
-      required: true
+      required: true,
     },
     subject: {
       type: 'ref',
       friendlyName: 'Subject of the mail',
-      required: true
+      required: true,
     },
     message: {
       type: 'ref',
       friendlyName: 'Message to send',
-      required: true
+      required: true,
     },
   },
 
-
   exits: {
-
     success: {
       description: 'All done.',
     },
-
   },
 
-
-  fn: async function ({ to, subject, message}) {
+  fn: function ({ to, subject, message }) {
     return new Promise((resolve, reject) => {
       const msg = {
         to,
@@ -55,12 +47,9 @@ module.exports = {
       };
 
       sgMail
-      .send(msg)
-      .then(resp => resolve(resp))
-      .catch(err => reject(err));
+        .send(msg)
+        .then((resp) => resolve(resp))
+        .catch((err) => reject(err));
     });
-  }
-
-
+  },
 };
-

@@ -9,23 +9,23 @@ module.exports = {
   attributes: {
     firstName: {
       type: 'string',
-      required: true
+      required: true,
     },
     lastName: {
       type: 'string',
-      required: true
+      required: true,
     },
     email: {
       type: 'string',
       unique: true,
-      required: true
+      required: true,
     },
     phoneNumber: {
       type: 'string',
-      required: true
+      required: true,
     },
     password: {
-      type: 'string'
+      type: 'string',
     },
     isAdmin: {
       type: 'boolean',
@@ -33,21 +33,21 @@ module.exports = {
     },
     orders: {
       collection: 'order',
-      via: 'owner'
-    }
+      via: 'owner',
+    },
   },
 
-  beforeCreate: async (valuesToCreate, proceed ) => {
-    const hashedPassword = await sails.helpers.hashPassword(valuesToCreate.password);
+  beforeCreate: async (valuesToCreate, proceed) => {
+    const hashedPassword = await sails.helpers.hashPassword(
+      valuesToCreate.password
+    );
     valuesToCreate.email = valuesToCreate.email.toLowerCase();
     valuesToCreate.password = hashedPassword;
     return proceed();
   },
 
-  customToJSON: function(){
+  customToJSON: function () {
     // Return a user data of this record with the password removed.
     return _.omit(this, ['password']);
-  }
-
+  },
 };
-

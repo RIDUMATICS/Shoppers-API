@@ -6,54 +6,58 @@
  */
 
 module.exports = {
-
   attributes: {
     owner: {
       model: 'user',
     },
     shipping: {
-      model: 'shipping'
+      model: 'shipping',
     },
     orderItems: {
       collection: 'orderitem',
-      via: 'orderId'
+      via: 'orderId',
     },
     itemsPrice: {
       type: 'number',
-      columnType: 'Number'
+      columnType: 'Number',
     },
     shippingPrice: {
       type: 'number',
-      columnType: 'Number'
+      columnType: 'Number',
     },
     totalPrice: {
       type: 'number',
-      columnType: 'Number'
+      columnType: 'Number',
     },
     isPaid: {
       type: 'boolean',
-      defaultsTo: false
+      defaultsTo: false,
     },
     paidAt: {
       type: 'string',
-      columnType: 'date'
+      columnType: 'date',
     },
     isDelivered: {
       type: 'boolean',
-      defaultsTo: false
+      defaultsTo: false,
     },
     deliveredAt: {
       type: 'string',
-      columnType: 'date'
-    }
+      columnType: 'date',
+    },
   },
 
   updateOrder: async function ({ id, data }) {
-    order = await Order.findOne({ id }).populate('owner').populate('shipping').populate('orderItems');
+    order = await Order.findOne({ id })
+      .populate('owner')
+      .populate('shipping')
+      .populate('orderItems');
 
-    if(order){
+    if (order) {
       const updatedOrder = await Order.updateOne({ id }).set(data);
-      const orderItems = await OrderItem.find({ orderId: order.id }).populate('product');
+      const orderItems = await OrderItem.find({ orderId: order.id }).populate(
+        'product'
+      );
       updatedOrder.orderItems = orderItems;
       updatedOrder.owner = order.owner;
       updatedOrder.shipping = order.shipping;
@@ -61,7 +65,5 @@ module.exports = {
     } else {
       return null;
     }
-  }
-
+  },
 };
-

@@ -1,5 +1,4 @@
 module.exports = function successResponse(status, result) {
-
   // Get access to `req` and `res`
   // eslint-disable-next-line no-unused-vars
   const req = this.req;
@@ -8,12 +7,10 @@ module.exports = function successResponse(status, result) {
   // If no data was provided, use res.sendStatus().
   if (result === undefined) {
     return res.sendStatus(status);
-  }
-  else{
+  } else {
     return res.status(status).send({
       status,
-      result
+      result,
     });
   }
-
 };

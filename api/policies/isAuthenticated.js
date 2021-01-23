@@ -9,19 +9,21 @@
  */
 
 module.exports = async function (req, res, next) {
-  await sails.helpers.verifyJwt.with({
-    req: req,
-    res: res
-  }).switch({
-    error: function (err) {
-      return res.serverError(err);
-    },
-    invalid: function () {
-      return res.sendStatus(401);
-    },
-    success: function () {
-      // user has been attached to the req object (ie logged in) so we're set, they may proceed
-      return next();
-    }
-  });
+  await sails.helpers.verifyJwt
+    .with({
+      req: req,
+      res: res,
+    })
+    .switch({
+      error: function (err) {
+        return res.serverError(err);
+      },
+      invalid: function () {
+        return res.sendStatus(401);
+      },
+      success: function () {
+        // user has been attached to the req object (ie logged in) so we're set, they may proceed
+        return next();
+      },
+    });
 };

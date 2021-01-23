@@ -6,15 +6,14 @@
  */
 
 module.exports = {
-
   attributes: {
     address: {
       type: 'string',
-      required: true
+      required: true,
     },
     city: {
       type: 'string',
-      required: true
+      required: true,
     },
     postalCode: {
       type: 'string',
@@ -22,9 +21,7 @@ module.exports = {
     },
     state: {
       type: 'string',
-      required: true
-    }
+      required: true,
+    },
   },
-
 };
-

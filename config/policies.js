@@ -8,25 +8,23 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
-
 module.exports.policies = {
-
   /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Default policy for all controllers and actions, unless overridden.       *
+   * (`true` allows public access)                                            *
+   *                                                                          *
+   ***************************************************************************/
 
   // '*': true,
 
   ProductController: {
     getProducts: true,
     getProductById: true,
-    addProduct: [ 'isAuthenticated', 'isAdmin'],
-    updateProduct: [ 'isAuthenticated', 'isAdmin'],
-    addProductReview: [ 'isAuthenticated'],
-    deleteProduct: [ 'isAuthenticated', 'isAdmin'],
+    addProduct: ['isAuthenticated', 'isAdmin'],
+    updateProduct: ['isAuthenticated', 'isAdmin'],
+    addProductReview: ['isAuthenticated'],
+    deleteProduct: ['isAuthenticated', 'isAdmin'],
   },
 
   OrderController: {
@@ -35,7 +33,6 @@ module.exports.policies = {
     getOrderById: ['isAuthenticated'],
     payOrder: ['isAuthenticated'],
     deliverOrder: ['isAuthenticated', 'isAdmin'],
-    deleteOrder: ['isAuthenticated']
-  }
-
+    deleteOrder: ['isAuthenticated'],
+  },
 };

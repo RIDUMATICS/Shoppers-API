@@ -5,49 +5,36 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
-
-
 module.exports = {
-
   attributes: {
     product: {
-      model: 'product'
+      model: 'product',
     },
     user: {
-      model: 'user'
+      model: 'user',
     },
     name: {
       type: 'string',
     },
     comment: {
       type: 'string',
-      required: true
+      required: true,
     },
     rating: {
       type: 'number',
-      required: true
-    }
+      required: true,
+    },
   },
 
-  afterCreate: async (review, cb ) => {
-    console.log('afterCreate');
+  afterCreate: async (review, cb) => {
     const reviews = await Review.find({ product: review.product });
-    const total = reviews.reduce(( sum,  review) => sum + review.rating, 0);
+    const total = reviews.reduce((sum, review) => sum + review.rating, 0);
     const rating = total / reviews.length;
-    await Product.updateOne({ id: review.product}).set({ rating, numReviews: reviews.length});
-    console.log(total/reviews.length);
+    await Product.updateOne({ id: review.product }).set({
+      rating,
+      numReviews: reviews.length,
+    });
 
     cb();
-    // try {
-    //   console.log(review);
-    //   const reviews = await Review.find({ product: review.product });
-    //   const total = reviews.reduce( (prevSum, review) => review.rating + prevSum, 0);
-    //   return cb();
-    // } catch (error) {
-    //   console.log(error);
-    //   return cb(error);
-    // }
-  }
-
+  },
 };
-

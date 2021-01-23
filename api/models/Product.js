@@ -6,78 +6,74 @@
  */
 
 module.exports = {
-
   attributes: {
     name: {
       type: 'string',
-      required: true
+      required: true,
     },
     image: {
       type: 'string',
-      required: true
+      required: true,
     },
     brand: {
       type: 'string',
-      required: true
+      required: true,
     },
     category: {
       type: 'string',
       isIn: ['clothing', 'bags', 'shoes', 'accessories'],
-      required: true
+      required: true,
     },
     productFor: {
-      type: 'json'
+      type: 'json',
     },
-    description:{
+    description: {
       type: 'string',
-      required: true
+      required: true,
     },
     price: {
       type: 'number',
-      required: true
+      required: true,
     },
     discount: {
       type: 'number',
-      defaultsTo: 0
+      defaultsTo: 0,
     },
-    countInStock:{
+    countInStock: {
       type: 'number',
-      required: true
+      required: true,
     },
     rating: {
       type: 'number',
-      defaultsTo: 0.0
+      defaultsTo: 0.0,
     },
     numReviews: {
       type: 'number',
-      defaultsTo: 0
+      defaultsTo: 0,
     },
     reviews: {
       collection: 'review',
-      via: 'product'
-    }
+      via: 'product',
+    },
   },
 
-  updateCountInStock: async function  ({ id, qty }) {
+  updateCountInStock: async function ({ id, qty }) {
     const product = await Product.findOne({ id });
 
-    if(!product){
+    if (!product) {
       throw require('flaverr')({
         message: `Cannot find product with the id=${opts.id}.`,
-        code: 'E_UNKNOWN_PRODUCT'
+        code: 'E_UNKNOWN_PRODUCT',
       });
     }
 
     const newCountInStock = product.countInStock - qty;
-    if(newCountInStock < 0) {
+    if (newCountInStock < 0) {
       throw require('flaverr')({
         message: `Count in stock is not enough.`,
-        code: 'E_INVALID_COUNT_IN_STOCK'
+        code: 'E_INVALID_COUNT_IN_STOCK',
       });
     }
-    await Product.updateOne({ id }).set({ countInStock: newCountInStock});
-
-  }
-
+    await Product.updateOne({ id }).set({ countInStock: newCountInStock });
+  },
 };
-

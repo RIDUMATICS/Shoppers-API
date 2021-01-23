@@ -9,11 +9,9 @@
  */
 
 module.exports.routes = {
-
   'post /auth/signup': 'UserController.register',
   'post /auth/login': 'UserController.login',
   'get /auth/createadmin': 'UserController.createAdmin',
-
 
   'get /products': 'ProductController.getProducts',
   'get /products/:productId': 'ProductController.getProductById',
@@ -22,12 +20,10 @@ module.exports.routes = {
   'patch /products/:productId': 'ProductController.updateProduct',
   'delete /products/:productId': 'ProductController.deleteProduct',
 
-
   'post /orders': 'OrderController.addOrder',
   'get /orders': 'OrderController.getOrders',
   'get /orders/:orderId': 'OrderController.getOrderById',
   'patch /orders/:orderId/deliver': 'OrderController.deliverOrder',
   'patch /orders/:orderId/pay': 'OrderController.payOrder',
-  'delete /orders/:orderId': 'OrderController.deleteOrder'
-
+  'delete /orders/:orderId': 'OrderController.deleteOrder',
 };
