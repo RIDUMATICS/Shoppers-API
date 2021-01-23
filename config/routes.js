@@ -27,6 +27,7 @@ module.exports.routes = {
   'get /orders': 'OrderController.getOrders',
   'get /orders/:orderId': 'OrderController.getOrderById',
   'patch /orders/:orderId/deliver': 'OrderController.deliverOrder',
-  'patch /orders/:orderId/pay': 'OrderController.payOrder'
+  'patch /orders/:orderId/pay': 'OrderController.payOrder',
+  'delete /orders/:orderId': 'OrderController.deleteOrder'
 
 };

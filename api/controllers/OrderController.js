@@ -39,6 +39,22 @@ module.exports = {
     }
   },
 
+  deleteOrder: async (req, res) => {
+    try {
+      const id = req.param('orderId');
+      const burnedOrder = await Order.destroyOne({ id });
+      if( burnedOrder ) {
+        res.successResponse(204);
+      }
+      else {
+        res.errorResponse(404, `The database does not contain a order with id=${id}`);
+      }
+    } catch (error) {
+      sails.log(error);
+      res.errorResponse(500, 'database is busy at the moment call back later');
+    }
+  },
+
   getOrders: async (req, res) => {
     try {
       let orders;
@@ -115,6 +131,10 @@ module.exports = {
       });
 
       if(order){
+        await sails.helpers.sendMail(
+          req.user.email,
+          `Your Shoppers Order ${order.id} has been delivered`,
+          mailTemplate.orderDelivered({ firstName: req.user.firstName, orderId: order.id}));
         res.successResponse(200, {order });
       } else {
         res.errorResponse(400, `The database does not contain an order with id=${orderId}`);

@@ -34,7 +34,8 @@ module.exports.policies = {
     getOrders: ['isAuthenticated'],
     getOrderById: ['isAuthenticated'],
     payOrder: ['isAuthenticated'],
-    deliverOrder: ['isAuthenticated', 'isAdmin']
+    deliverOrder: ['isAuthenticated', 'isAdmin'],
+    deleteOrder: ['isAuthenticated']
   }
 
 };
