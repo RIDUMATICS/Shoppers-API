@@ -51,9 +51,15 @@ module.exports.datastores = {
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
 
-    adapter: 'sails-mongo',
-    url: 'mongodb://Ridumatics:Ril-wayne1@shoppers-shard-00-00.06n9j.mongodb.net:27017,shoppers-shard-00-01.06n9j.mongodb.net:27017,shoppers-shard-00-02.06n9j.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-b6is9y-shard-0&authSource=admin&retryWrites=true&w=majority'
-
+    adapter: 'sails-postgresql',
+    host: 'ec2-54-85-13-135.compute-1.amazonaws.com',
+    port: 5432,
+    user: 'jjxgajfodycwtw',
+    password: '0d6441af406ab20d14c7f09e0430714966e4501eb60279c4ed5b8674fa4074c1',
+    database: 'dbveoe8j9jdhss',
+    ssl: true,
+    pool: false,
+    max: 1
   },
 
 
