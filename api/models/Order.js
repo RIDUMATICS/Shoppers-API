@@ -19,15 +19,15 @@ module.exports = {
     },
     itemsPrice: {
       type: 'number',
-      columnType: 'Number',
+      // columnType: 'Number',
     },
     shippingPrice: {
       type: 'number',
-      columnType: 'Number',
+      // columnType: 'Number',
     },
     totalPrice: {
       type: 'number',
-      columnType: 'Number',
+      // columnType: 'Number',
     },
     isPaid: {
       type: 'boolean',
@@ -35,7 +35,7 @@ module.exports = {
     },
     paidAt: {
       type: 'string',
-      columnType: 'date',
+      // columnType: 'date',
     },
     isDelivered: {
       type: 'boolean',
@@ -43,7 +43,7 @@ module.exports = {
     },
     deliveredAt: {
       type: 'string',
-      columnType: 'date',
+      // columnType: 'date',
     },
   },
 

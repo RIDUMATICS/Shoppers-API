@@ -57,9 +57,10 @@ module.exports.datastores = {
     user: 'jjxgajfodycwtw',
     password: '0d6441af406ab20d14c7f09e0430714966e4501eb60279c4ed5b8674fa4074c1',
     database: 'dbveoe8j9jdhss',
-    ssl: true,
-    pool: false,
-    max: 1
+    ssl: {
+      rejectUnauthorized: false
+    },
+    poolSize: 10,
   },
 
 
