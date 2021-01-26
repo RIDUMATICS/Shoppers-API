@@ -5,8 +5,14 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+ const { v4: uuidv4 } = require('uuid');
+
 module.exports = {
   attributes: {
+    productId: {
+      type: 'string',
+      defaultsTo: uuidv4()
+    },
     name: {
       type: 'string',
       required: true,

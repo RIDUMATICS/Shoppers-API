@@ -31,7 +31,7 @@ module.exports = {
         where: { productFor: { contains: productFor }, category },
       });
       const totalPages = parseInt(Math.ceil(parseFloat(productsCount / limit)));
-      res.successResponse(200, { products, totalPages });
+      res.successResponse(200, { products: products.reverse(), totalPages });
     } catch (error) {
       sails.log(error);
       res.errorResponse(500, 'database is busy at the moment call back later');
@@ -87,7 +87,7 @@ module.exports = {
   },
 
   addProduct: async (req, res) => {
-    sails.log(req.body);
+    sails.log(req.file());
     try {
       const files = await new Promise((resolve, reject) => {
         req.file('productImage').upload(

@@ -4,6 +4,7 @@
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
+const short = require('short-uuid');
 
 module.exports = {
   attributes: {
@@ -16,6 +17,10 @@ module.exports = {
     orderItems: {
       collection: 'orderitem',
       via: 'orderId',
+    },
+    orderRef: {
+      type: 'string',
+      defaultsTo: short.generate(),
     },
     itemsPrice: {
       type: 'number',

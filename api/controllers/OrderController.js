@@ -76,7 +76,7 @@ module.exports = {
           .populate('shipping')
           .populate('orderItems');
       }
-      res.successResponse(200, { orders });
+      res.successResponse(200, { orders: orders.reverse() });
     } catch (error) {
       sails.log(error);
       res.errorResponse(500, 'database is busy at the moment call back later');
@@ -120,6 +120,7 @@ module.exports = {
   payOrder: async (req, res) => {
     try {
       const { orderId } = req.params;
+      console.log(orderId);
       const order = await Order.updateOrder({
         id: orderId,
         data: { isPaid: true, paidAt: new Date() },
@@ -133,10 +134,10 @@ module.exports = {
         // notify user through mail
         await sails.helpers.sendMail(
           req.user.email,
-          `Your Shoppers Order ${order.id} has been confirmed`,
+          `Your Shoppers Order ${order.orderRef} has been confirmed`,
           mailTemplate.orderSubmitted({
             firstName: req.user.firstName,
-            orderId: order.id,
+            orderId: order.orderRef,
           })
         );
 
@@ -144,7 +145,7 @@ module.exports = {
         await sails.helpers.smsNotification(
           mailTemplate.orderSubmittedSMS({
             firstName: req.user.firstName,
-            orderId: order.id,
+            orderId: order.orderRef,
           }),
           req.user.phoneNumber
         );

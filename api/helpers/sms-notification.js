@@ -4,8 +4,8 @@ const twiloConfig = require('twilio');
 dotenv.config();
 
 const twilioClient = twiloConfig(
-  'AC344b544c9da44903b07a0cf198d7abdf',
-  '673c88aa154e62a14196b849c334bf40'
+  process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN
 );
 
 module.exports = {

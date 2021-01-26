@@ -19,6 +19,7 @@
     "sails-mongo": "^1.2.0",
     "sails-postgresql": "^2.0.0",
     "sails-postgresql-redacted": "^1.0.2-9",
+    "short-uuid": "^4.1.0",
     "twilio": "^3.55.0"
   },
   "devDependencies": {

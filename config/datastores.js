@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+
+dotenv.config();
 /**
  * Datastores
  * (sails.config.datastores)
@@ -52,11 +55,11 @@ module.exports.datastores = {
     // url: 'mysql://user:password@host:port/database',
 
     adapter: 'sails-postgresql',
-    host: 'ec2-54-85-13-135.compute-1.amazonaws.com',
-    port: 5432,
-    user: 'jjxgajfodycwtw',
-    password: '0d6441af406ab20d14c7f09e0430714966e4501eb60279c4ed5b8674fa4074c1',
-    database: 'dbveoe8j9jdhss',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PWD,
+    database: process.env.DB_NAME,
     ssl: {
       rejectUnauthorized: false
     },
