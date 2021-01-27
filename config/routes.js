@@ -9,6 +9,20 @@
  */
 
 module.exports.routes = {
+  'get /': {
+    skipAssets: true,
+    fn: function(req, res) {
+      return res.json({
+        name: 'Shoppers',
+        description: 'This project is an implementation of an on-line store in Postgres and Sails.js which is similar to the existing online shopping websites like Amazon and ebay.',
+        version: 1,
+        UI: 'https://shoppers-ui.netlify.app/',
+        API: 'https://github.com/RIDUMATICS/Shoppers-API',
+        developer: 'Ridwan Onikoyi',
+      });
+    }
+  },
+
   'post /auth/signup': 'UserController.register',
   'post /auth/login': 'UserController.login',
   'get /auth/createadmin': 'UserController.createAdmin',
